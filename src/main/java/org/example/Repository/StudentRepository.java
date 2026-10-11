@@ -1,5 +1,7 @@
 package org.example.Repository;
 
+import org.example.Model.Student;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -36,15 +38,29 @@ public class StudentRepository {
 
     }
 
+    public void updateUser(){
+        try{
+            Connection connection = DriverManager.getConnection(url,username,password);
+            Statement statement  = connection.createStatement();
+
+            String sql = " UPDATE student SET age = 21 " + "WHERE studentid = 1";
+
+            int rus = statement.executeUpdate(sql);
+
+            if(rus == 1){
+                System.out.println("sucess");
+            }
+            else{
+                System.out.println("failed");
+            }
 
 
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-
-
-
-
-
-
+    }
 
 
 
